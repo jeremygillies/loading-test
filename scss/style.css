@@ -1,0 +1,343 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: #ECF0F1;
+  color: #333333; }
+
+.content-wrapper {
+  position: relative;
+  margin: auto;
+  width: 450px;
+  height: 87vh;
+  padding-bottom: 5vh;
+  padding-top: 5vh;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 18px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+
+h1 {
+  font-weight: 700;
+  font-size: 36px; }
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #538fbe;
+  padding: 10px 15px;
+  border-radius: 2px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+p {
+  font-weight: 500;
+  font-size: 24px; }
+
+.memory-game {
+  display: none; }
+  .memory-game.visible {
+    display: block; }
+
+.sliding-puzzle-wrapper {
+  display: none; }
+  .sliding-puzzle-wrapper.visible {
+    display: block; }
+
+.play-game {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 300px; }
+  .play-game.hidden {
+    display: none; }
+
+.end-test {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 75px; }
+  .end-test a {
+    text-align: center; }
+
+.loading {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 200px; }
+  .loading .loading-image {
+    text-align: center; }
+    .loading .loading-image img {
+      width: 100px; }
+  .loading .loading-text {
+    text-align: center; }
+  .loading.sml {
+    top: 25px; }
+    .loading.sml .loading-image {
+      text-align: center;
+      display: inline-block;
+      float: left; }
+      .loading.sml .loading-image img {
+        width: 30px; }
+    .loading.sml .loading-text {
+      display: inline-block;
+      float: left;
+      margin-left: 10px;
+      line-height: 30px; }
+
+.tile-one {
+  background-image: url(../img/square1.png);
+  background-size: 100% auto; }
+
+.tile-two {
+  background-image: url(../img/square2.png);
+  background-size: 100% auto; }
+
+.tile-three {
+  background-image: url(../img/square3.png);
+  background-size: 100% auto; }
+
+.tile-four {
+  background-image: url(../img/square4.png);
+  background-size: 100% auto; }
+
+.tile-five {
+  background-image: url(../img/square5.png);
+  background-size: 100% auto; }
+
+.tile-six {
+  background-image: url(../img/square6.png);
+  background-size: 100% auto; }
+
+.tile-seven {
+  background-image: url(../img/square7.png);
+  background-size: 100% auto; }
+
+.tile-eight {
+  background-image: url(../img/square8.png);
+  background-size: 100% auto; }
+
+/*
+.sliding-puzzle-figure a#shuffle {
+  color: #E74C3C;
+}
+.sliding-puzzle-figure a#solve {
+  color: #3498DB;
+}
+*/
+.sliding-puzzle-figure {
+  display: none;
+  margin: auto;
+  height: 300px;
+  width: 300px; }
+  .sliding-puzzle-figure a {
+    cursor: pointer; }
+  .sliding-puzzle-figure .sliding-puzzle {
+    list-style-type: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-clip: border-box; }
+    .sliding-puzzle-figure .sliding-puzzle .tile {
+      position: absolute;
+      background-color: #7BC8F3;
+      color: #1F1F1F;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 33%;
+      height: 33%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      font-size: 1rem;
+      left: 0%;
+      top: 0%;
+      transition: all 0.5s linear;
+      transition-timing-function: ease;
+      box-sizing: border-box; }
+      .sliding-puzzle-figure .sliding-puzzle .tile.error {
+        background-color: #F0867D; }
+
+@media only screen and (max-width: 300px) {
+  .sliding-puzzle-figure {
+    width: 90vw;
+    height: 90vw;
+    max-height: 100vh; }
+
+  .sliding-puzzle-figure .tile {
+    font-size: 1em; } }
+/*# sourceMappingURL=style.css.map */
+.memory-game {
+  position: relative;
+  height: 330px;
+  min-height: 320px;
+  padding-top: 50px;
+  margin: auto; }
+  .memory-game .game {
+    display: grid;
+    grid-template-columns: 24.3% 24.3% 24.3% 24.3%;
+    grid-template-rows: auto;
+    grid-column-gap: 1%;
+    grid-row-gap: 1%;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    min-height: 100%;
+    height: 100%;
+    width: 100%; }
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc; }
+  100% {
+    background: white; } }
+  .memory-game .card {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: block;
+    perspective: 500px;
+    position: relative;
+    cursor: pointer;
+    z-index: 50;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+    .memory-game .card .inside {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-style: preserve-3d;
+      transition: .4s ease-in-out;
+      background-color: #004288;
+      border-radius: 8px; }
+      .memory-game .card .inside.picked, .memory-game .card .inside.matched {
+        transform: rotateY(180deg); }
+      .memory-game .card .inside.matched {
+        animation: 1s matchAnim ease-in-out;
+        animation-delay: .4s; }
+    .memory-game .card .front, .memory-game .card .back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0px; }
+      .memory-game .card .front img, .memory-game .card .back img {
+        border-radius: 5px;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        max-height: 100%; }
+    .memory-game .card .front {
+      transform: rotateY(-180deg); }
+      @media (max-width: 800px) {
+        .memory-game .card .front {
+          padding: 0px; } }
+    .memory-game .card .back {
+      transform: rotateX(0); }
+      @media (max-width: 800px) {
+        .memory-game .card .back {
+          padding: 0px; } }
+  .memory-game .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .memory-game .modal {
+    display: none;
+    position: relative;
+    width: 500px;
+    height: 400px;
+    max-height: 90%;
+    max-width: 90%;
+    min-height: 380px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 30px 10px; }
+    .memory-game .modal .winner {
+      font-size: 80px;
+      text-align: center; }
+      @media (max-width: 480px) {
+        .memory-game .modal .winner {
+          font-size: 60px; } }
+    .memory-game .modal .restart {
+      margin: 30px auto;
+      padding: 20px 30px;
+      display: block;
+      font-size: 30px;
+      border: none;
+      background: #4d4d4d;
+      background: linear-gradient(#4d4d4d, #222);
+      border: 1px solid #222;
+      border-radius: 3px;
+      color: white;
+      text-shadow: 0px 1px 0 black;
+      cursor: pointer; }
+      .memory-game .modal .restart:hover {
+        background: linear-gradient(#222, black); }
+    .memory-game .modal .message {
+      text-align: center; }
+      .memory-game .modal .message a {
+        text-decoration: none;
+        color: #28afe6;
+        font-weight: bold; }
+        .memory-game .modal .message a:hover {
+          color: #56c0eb;
+          border-bottom: 1px dotted #56c0eb; }
+    .memory-game .modal .share-text {
+      text-align: center;
+      margin: 10px auto; }
+    .memory-game .modal .social {
+      margin: 20px auto;
+      text-align: center; }
+      .memory-game .modal .social li {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        margin-right: 10px; }
+        .memory-game .modal .social li:last-child {
+          margin-right: 0; }
+        .memory-game .modal .social li a {
+          display: block;
+          line-height: 50px;
+          font-size: 20px;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px; }
+          .memory-game .modal .social li a.facebook {
+            background: #3b5998; }
+            .memory-game .modal .social li a.facebook:hover {
+              background: #4c70ba; }
+          .memory-game .modal .social li a.google {
+            background: #D34836; }
+            .memory-game .modal .social li a.google:hover {
+              background: #dc6e60; }
+          .memory-game .modal .social li a.twitter {
+            background: #4099FF; }
+            .memory-game .modal .social li a.twitter:hover {
+              background: #73b4ff; }
+  .memory-game footer {
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 0; }
+    .memory-game footer .disclaimer {
+      line-height: 20px;
+      font-size: 12px;
+      color: #727272;
+      text-align: center; }
+      @media (max-width: 767px) {
+        .memory-game footer .disclaimer {
+          font-size: 8px; } }
+
+/*# sourceMappingURL=style.css.map */

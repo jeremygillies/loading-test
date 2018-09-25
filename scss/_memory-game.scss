@@ -1,0 +1,162 @@
+.memory-game {
+  position: relative;
+  height: 223px;
+  min-height: 223px;
+  padding-top: 50px;
+  margin: 50px auto;
+  width: 300px;
+  p {
+    text-align: center;
+  }
+  .game {
+    display: grid;
+    grid-template-columns: 71px 71px 71px 71px;
+    grid-template-rows: auto;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  	transform-style: preserve-3d;
+  	perspective: 500px;
+  	min-height: 100%;
+    height: 100%;
+    width: 100%;
+  }
+
+  @mixin width($max){
+  	@media (max-width: $max){
+  		@content;
+  	}
+  }
+
+  @keyframes matchAnim {
+  	0% {
+  		background: #bcffcc;
+  	}
+  	100% {
+  		background: white;
+  	}
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: block;
+    perspective: 500px;
+    position: relative;
+    cursor: pointer;
+    z-index: 50;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  	.inside {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-style: preserve-3d;
+      transition: .4s ease-in-out;
+      background-color: #004288;
+      border-radius: 8px;
+  		&.picked, &.matched {
+  			transform: rotateY(180deg);
+  		}
+  		&.matched {
+  			animation: 1s matchAnim ease-in-out;
+  			animation-delay: .4s;
+  		}
+  	}
+
+    .front, .back {
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0px;
+      border-radius: 3px;
+    	img {
+        border-radius: 5px;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        max-height: 100%;
+    	}
+    }
+    .front {
+    	transform: rotateY(-180deg);
+    	@include width(800px){
+    		padding: 0px;
+    	}
+    }
+    .back{
+      border:3px solid #0042af;
+  		transform: rotateX(0); // fix firefox backface-visibility.
+  		@include width(800px){
+    		padding: 0px;
+    	}
+    }
+  }
+
+  .modal-overlay {
+  	display: none;
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  }
+
+  .modal {
+    display: none;
+    position: relative;
+    width: 500px;
+    height: 400px;
+    max-height: 90%;
+    max-width: 90%;
+    min-height: 380px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 30px 10px;
+  	.winner {
+      font-size: 80px;
+      text-align: center;
+  		@include width(480px){
+  			font-size: 60px;
+  		}
+  	}
+  	.restart {
+    	display: inline-block;
+    	text-decoration: none;
+    	color: #fff;
+    	background-color: #538fbe;
+    	padding: 10px 15px;
+      border-radius: 2px;
+      border:none;
+      font-size:$font-size-small;
+      font-family: 'Roboto Condensed', sans-serif;
+      margin: 30px auto;
+      cursor: pointer;
+      display: block;
+  		&:hover {
+  			background: #2F6D9D;
+  		}
+  	}
+  }
+
+  footer {
+  	height: 20px;
+  	position: absolute;
+  	bottom: 0;
+  	width: 100%;
+    z-index: 0;
+  	.disclaimer {
+  		line-height: 20px;
+  		font-size: 12px;
+  		color: #727272;
+  		text-align: center;
+  		@include width(767px){
+  			font-size: 8px;
+  		}
+  	}
+  }
+}
